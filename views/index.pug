@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the new world buddy.
+  button(type = 'button', class = 'btn btn-primary btn-sm', onClick = 'goFaster()') Press Me
+  br
+  br
+  div(id = "faster") Increase the speed
+
+  script.
+      var mph = 20;
+      var change = 1;
+
+      function goFaster(){
+          mph = mph + change;
+          change = change + 1;
+          document.getElementById("faster").textContent = "MPH " + mph + " with change " + change; 
+      }
+  br
+  a(href="/electronics") Electronics

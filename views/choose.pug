@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+
+  - var image_names = ['Apple.jpeg', 'Electronics.jpeg', 'Oneplus.jpeg', 'Samsung.jpeg', 'Steve.jpeg']
+
+  - for(let i = 0; i<3; i++)
+    - let index = Math.floor(Math.random()*5)
+    - let images = image_names[index]
+    img(src=`/images/${images}`, alt=`${images}`, height="300", width="300")
+
+  br
+  br
+  a(href="/board?rows=5&cols=6") Board
