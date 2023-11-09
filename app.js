@@ -19,11 +19,12 @@ db.once("open", function () {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var electronicsRouter = require('./routes/electronics');
+var electronicsRouter = require('./routes/mobiles');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var mobilesRouter = require('./models/mobiles');
 var resourceRouter = require('./routes/resource');
-var mobilesRouter = require('./routes/mobiles');
+
 
 var app = express();
 
@@ -39,11 +40,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/electronics', electronicsRouter);
+app.use('/mobiles', electronicsRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
-app.use('/resource', resourceRouter);
 app.use('/mobiles', mobilesRouter);
+app.use('/resource', resourceRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -65,21 +68,21 @@ async function recreateDB() {
   // Delete everything from the Horse model
   await mobile.deleteMany();
 
-  let instance1 = new mobile({ mobile_name: 'Apple', mobile_model: '15 Pro', mobile_price: 1299 });
+  let instance1 = new mobile({ productName: '15Pro', brand: 'Apple', price: 1299 });
   instance1.save().then(doc => {
     console.log("First mobile saved");
   }).catch(err => {
     console.error(err);
   });
 
-  let instance2 = new mobile({ mobile_name: 'Samsung', mobile_model: 'S23', mobile_price: 1199 });
+  let instance2 = new mobile({ productName: 'S23', brand: 'Samsung', price: 1199 });
   instance2.save().then(doc => {
     console.log("Second mobile saved");
   }).catch(err => {
     console.error(err);
   });
 
-  let instance3 = new mobile({ mobile_name: 'Oneplus', mobile_model: '11 Pro', mobile_price: 999 });
+  let instance3 = new mobile({ productName: '11Pro', brand: 'Oneplus', price: 999 });
   instance3.save().then(doc => {
     console.log("Third mobile saved");
   }).catch(err => {
