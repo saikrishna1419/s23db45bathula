@@ -13,3 +13,9 @@ router.get('/detail', mobile_controlers.mobile_view_one_Page);
 
 /* GET create costume page */
 router.get('/create', mobile_controlers.mobile_create_Page);
+
+/* GET create update page */
+router.get('/update', mobile_controlers.mobile_update_Page);
+
+/* GET delete costume page */
+router.get('/delete', mobile_controlers.mobile_delete_Page)

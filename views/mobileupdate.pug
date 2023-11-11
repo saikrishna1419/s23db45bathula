@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    h1= title
+
+    - let mobileid = toShow._id
+    - let productName = toShow.productName
+    - let brand = toShow.brand
+    - let price = toShow.price
+
+    div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{mobileid}
+    - let actionid = "/resource/mobiles/" + mobileid
+
+    form(id='mobileForm', action=actionid , method="PUT")
+        div.form-group
+            label.mobileAttr(for='productName') Mobile Name
+            input#productName(type='text', name='productName', value='Oppo')
+        div.form-group
+            label.mobileAttr(for='brand') Mobile Brand
+            input#brand(type='text', name='brand', value='Reno9')
+        div.form-group
+            label.mobileAttr(for='price') Mobile price
+            input#price(type='number', name='price', value=899)
+        input(type="submit")
+
+    script.
+        document.forms['mobileForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+            alert("Save succeded")
+            // TODO handle body
+            }).catch((error) => {
+            // TODO handle error
+            alert("Save failed " + error )
+            });
+        });
