@@ -10,3 +10,6 @@ router.get('/mobiles/:id', mobile_controlers.mobile_detail);
 
 /* GET detail costume page */
 router.get('/detail', mobile_controlers.mobile_view_one_Page);
+
+/* GET create costume page */
+router.get('/create', mobile_controlers.mobile_create_Page);
