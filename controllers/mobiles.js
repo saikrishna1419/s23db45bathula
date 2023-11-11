@@ -1,8 +1,10 @@
 var mobile = require("../models/mobiles");
+
 // List of all mobiles
 exports.mobile_list = async function (req, res) {
   res.send('NOT IMPLEMENTED: mobile list');
 };
+
 // for a specific mobile.
 exports.mobile_detail = async function (req, res) {
   console.log("detail" + req.params.id)
@@ -14,6 +16,7 @@ exports.mobile_detail = async function (req, res) {
     res.send(`{"error": document for id ${req.params.id} not found`);
   }
 };
+
 // Handle mobile create on POST.
 exports.mobile_create_post = async function (req, res) {
   console.log(req.body)
@@ -81,6 +84,20 @@ exports.mobile_list = async function (req, res) {
     res.send(`{"error": ${err}}`);
   }
 };
+
+// Handle a show one view with id specified by query
+exports.mobile_view_one_Page = async function(req, res) {
+  console.log("single view for id " + req.query.id)
+  try{
+  result = await mobile.findById( req.query.id)
+  res.render('Mobiledetail',
+  { title: 'Mobiles Detail', toShow: result });
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+  };
 
 // VIEWS
 // Handle a show all view

@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.mobileAttr {
+  background-color: rgb(241, 185, 133);
+  width: 280px;
+  }
+  

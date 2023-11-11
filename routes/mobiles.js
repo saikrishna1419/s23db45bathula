@@ -8,4 +8,5 @@ module.exports = router;
 // GET request for one costume.
 router.get('/mobiles/:id', mobile_controlers.mobile_detail);
 
-//router.delete('/mobiles/:id', mobile_controlers.mobile_detail);
+/* GET detail costume page */
+router.get('/detail', mobile_controlers.mobile_view_one_Page);
