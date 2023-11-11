@@ -7,3 +7,5 @@ module.exports = router;
 
 // GET request for one costume.
 router.get('/mobiles/:id', mobile_controlers.mobile_detail);
+
+//router.delete('/mobiles/:id', mobile_controlers.mobile_detail);
