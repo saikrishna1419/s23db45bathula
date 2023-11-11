@@ -40,18 +40,18 @@ exports.mobile_create_post = async function (req, res) {
 };
 
 // Handle Costume delete on DELETE.
-exports.mobile_delete = async function(req, res) {
+exports.mobile_delete = async function (req, res) {
   console.log("delete " + req.params.id)
   try {
-  result = await mobile.findByIdAndDelete( req.params.id)
-  console.log("Removed " + result)
-  res.send(result)
+    result = await mobile.findByIdAndDelete(req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
   } catch (err) {
-  res.status(500)
-  res.send(`{"error": Error deleting ${err}}`);
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
   }
-  };
-  
+};
+
 // Handle mobile update form on PUT.
 exports.mobile_update_put = async function (req, res) {
   console.log(`update on id ${req.params.id} with body
@@ -86,60 +86,75 @@ exports.mobile_list = async function (req, res) {
 };
 
 // Handle a show one view with id specified by query
-exports.mobile_view_one_Page = async function(req, res) {
+exports.mobile_view_one_Page = async function (req, res) {
   console.log("single view for id " + req.query.id)
-  try{
-  result = await mobile.findById( req.query.id)
-  res.render('Mobiledetail',
-  { title: 'Mobiles Detail', toShow: result });
+  try {
+    result = await mobile.findById(req.query.id)
+    if (!result) {
+      // Handle the case where the instance with the given ID doesn't exist
+      res.status(404).send(`{'error': 'Mobile not found'}`);
+      return;
+    }
+    res.render('Mobiledetail',
+      { title: 'Mobiles Detail', toShow: result });
   }
-  catch(err){
-  res.status(500)
-  res.send(`{'error': '${err}'}`);
+  catch (err) {
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
   }
-  };
+};
 
 // Handle building the view for creating a costume.
 // No body, no in path parameter, no query.
 // Does not need to be async
-exports.mobile_create_Page = function(req, res) {
-console.log("create view")
-try{
-res.render('mobilecreate', { title: 'Mobile Create'});
-}
-catch(err){
-res.status(500)
-res.send(`{'error': '${err}'}`);
-}
+exports.mobile_create_Page = function (req, res) {
+  console.log("create view")
+  try {
+    res.render('mobilecreate', { title: 'Mobile Create' });
+  }
+  catch (err) {
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+  }
 };
 
 // Handle building the view for updating a costume.
 // query provides the id
-exports.mobile_update_Page = async function(req, res) {
-  console.log("update view for item "+req.query.id)
-  try{
-  let result = await mobile.findById(req.query.id)
-  res.render('mobileupdate', { title: 'Mobile Update', toShow: result });
+exports.mobile_update_Page = async function (req, res) {
+  console.log("update view for item " + req.query.id)
+  try {
+    let result = await mobile.findById(req.query.id)
+    
+    res.render('mobileupdate', { title: 'Mobile Update', toShow: result });
   }
-  catch(err){
-  res.status(500)
-  res.send(`{'error': '${err}'}`);
+  catch (err) {
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
   }
-  };
+};
 
 
 // Handle a delete one view with id from query
-exports.mobile_delete_Page = async function(req, res) {
-console.log("Delete view for id " + req.query.id)
-try{
-result = await mobile.findById(req.query.id)
-res.render('mobiledelete', { title: 'Mobile Delete', toShow:
-result });
-}
-catch(err){
-res.status(500)
-res.send(`{'error': '${err}'}`);
-}
+exports.mobile_delete_Page = async function (req, res) {
+  console.log("Delete view for id " + req.query.id)
+  try {
+    result = await mobile.findById(req.query.id)
+
+    if (!result) {
+      // Handle the case where the instance with the given ID doesn't exist
+      res.status(404).send(`{'error': 'Mobile not found'}`);
+      return;
+    }
+
+    res.render('mobiledelete', {
+      title: 'Mobile Delete', toShow:
+        result
+    });
+  }
+  catch (err) {
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+  }
 };
 
 // VIEWS

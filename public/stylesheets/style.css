@@ -10,5 +10,7 @@ a {
 .mobileAttr {
   background-color: rgb(241, 185, 133);
   width: 280px;
+  border-radius: 5px;
+  padding: 2px;
   }
   

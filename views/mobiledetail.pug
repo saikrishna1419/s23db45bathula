@@ -6,13 +6,27 @@ block content
     - let productName = toShow.productName
     - let brand = toShow.brand
     - let price = toShow.price
-    div
-        div.row
-            div(class='mobileAttr mr-3') Mobile ID is:  #{mobileid}
-        div.row
-            div(class='mobileAttr mr-3') Mobile Name is:  #{productName}
-        div.row
-            div(class='mobileAttr mr-3') Mobile Brand is:  #{brand}
-        div.row
-            div(class='mobileAttr mr-3') Mobile price is:  #{price}
 
+    .card.bg-light.mb-3
+        .card-body
+            .h5.card-title Mobile Details
+            .row 
+                .col-md-6 
+                    p.card-text 
+                        strong Mobile ID:
+                        span  #{mobileid}
+                        br
+
+                        strong Mobile Name:
+                        span  #{productName}
+                        br
+            
+                        strong Mobile Brand:
+                        span  #{brand}
+                        br
+            
+                        strong Mobile Price:
+                        span  #{price}
+                        br
+                        br
+            a.btn.btn-sm.btn-info(href='/mobiles') Back to Mobiles
