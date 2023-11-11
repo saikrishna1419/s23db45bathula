@@ -5,6 +5,7 @@ exports.mobile_list = async function (req, res) {
   res.send('NOT IMPLEMENTED: mobile list');
 };
 
+
 // for a specific mobile.
 exports.mobile_detail = async function (req, res) {
   console.log("detail" + req.params.id)
@@ -92,7 +93,7 @@ exports.mobile_view_one_Page = async function (req, res) {
     result = await mobile.findById(req.query.id)
     if (!result) {
       // Handle the case where the instance with the given ID doesn't exist
-      res.status(404).send(`{'error': 'Mobile not found'}`);
+      res.status(404).send(`No instance to delete`);
       return;
     }
     res.render('Mobiledetail',
@@ -124,7 +125,11 @@ exports.mobile_update_Page = async function (req, res) {
   console.log("update view for item " + req.query.id)
   try {
     let result = await mobile.findById(req.query.id)
-    
+    if (!result) {
+      // Handle the case where the instance with the given ID doesn't exist
+      res.status(404).send(`No instance to delete`);
+      return;
+    }
     res.render('mobileupdate', { title: 'Mobile Update', toShow: result });
   }
   catch (err) {
@@ -139,12 +144,6 @@ exports.mobile_delete_Page = async function (req, res) {
   console.log("Delete view for id " + req.query.id)
   try {
     result = await mobile.findById(req.query.id)
-
-    if (!result) {
-      // Handle the case where the instance with the given ID doesn't exist
-      res.status(404).send(`{'error': 'Mobile not found'}`);
-      return;
-    }
 
     res.render('mobiledelete', {
       title: 'Mobile Delete', toShow:

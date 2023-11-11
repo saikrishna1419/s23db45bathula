@@ -2,11 +2,11 @@ extends layout
 
 block content
     h1= title
-';sdfg;'
-    if (toShow == null)
+
+    if(toShow == null)
         h2 No instance to delete
     else
-        - let mobileid = toShow._id
+        - let mobileid = toShow._id.toString()
         - let productName = toShow.productName
         - let mobileBrand = toShow.brand
         - let mobilePrice = toShow.price
