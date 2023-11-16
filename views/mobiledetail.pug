@@ -4,33 +4,33 @@ block content
     h1= title
 
     if (toShow == null)
-        h2 No instance to delete
+        h2 No instance to see
     else
-    - let mobileid = toShow._id
-    - let productName = toShow.productName
-    - let brand = toShow.brand
-    - let price = toShow.price
+        - let mobileid = toShow._id
+        - let productName = toShow.productName
+        - let brand = toShow.brand
+        - let price = toShow.price
 
-    .card.bg-light.mb-3
-        .card-body
-            .h5.card-title Mobile Details
-            .row 
-                .col-md-6 
-                    p.card-text 
-                        strong Mobile ID:
-                        span  #{mobileid}
-                        br
+        .card.bg-light.mb-3
+            .card-body
+                .h5.card-title Mobile Details
+                .row 
+                    .col-md-6 
+                        p.card-text 
+                            strong Mobile ID:
+                            span  #{mobileid}
+                            br
 
-                        strong Mobile Name:
-                        span  #{productName}
-                        br
+                            strong Mobile Name:
+                            span  #{productName}
+                            br
             
-                        strong Mobile Brand:
-                        span  #{brand}
-                        br
+                            strong Mobile Brand:
+                            span  #{brand}
+                            br
             
-                        strong Mobile Price:
-                        span  #{price}
-                        br
-                        br
-            a.btn.btn-sm.btn-info(href='/mobiles') Back to Mobiles
+                            strong Mobile Price:
+                            span  #{price}
+                            br
+                            br
+                a.btn.btn-sm.btn-info(href='/mobiles') Back to Mobiles
