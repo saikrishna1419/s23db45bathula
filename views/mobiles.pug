@@ -2,20 +2,24 @@ extends layout
 
 block content
   h1= title
-  
-  
 
   script.
-    function buy(index){
+    function buy(index) {
       alert("You purchased items " + (index+1));
     }
 
   div.container-fluid
-    div.row
+    div.row.m-1
       - let result = results
-        each electronics, index in result
-            div.col-sm-2(onClick = `buy(${index})`)
-                p Product Name:  #{electronics.productName}
-                p Brand: #{electronics.brand}
-                p Price: #{electronics.price}
+      each electronics, index in result
+        - let destination = `/mobiles/update?id=${electronics._id}`
+        div.col-sm-2.m-1(onclick=`buy(${index})`)
+          p Product Name: #{electronics.productName}
+          p Brand: #{electronics.brand}
+          p Price: #{electronics.price}
+          button.btn-primary.ml-1(onclick=`dispatch('${destination}')`) Update
 
+  script.
+    function dispatch(path) {
+      window.location.href = path;
+    }

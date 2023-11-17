@@ -19,13 +19,13 @@ block content
         form(id='mobileForm', action=actionid , method="PUT")
             div.form-group
                 label.mobileAttr(for='productName') Mobile Name
-                input#productName(type='text', name='productName', value='Oppo')
+                input#productName(type='text', name='productName', value=productName)
             div.form-group
                 label.mobileAttr(for='brand') Mobile Brand
-                input#brand(type='text', name='brand', value='Reno9')
+                input#brand(type='text', name='brand', value=brand)
             div.form-group
                 label.mobileAttr(for='price') Mobile price
-                input#price(type='number', name='price', value=899)
+                input#price(type='number', name='price', value=price)
             input(type="submit")
 
         script.
