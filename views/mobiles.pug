@@ -12,7 +12,7 @@ block content
     div.row.m-1
       - let result = results
       each electronics, index in result
-        - let destination = `/mobiles/update?id=${electronics._id}`
+        - let destination = 'dispatch(\"/mobiles/update?id=${electronics._id}\")'
         div.col-sm-2.m-1(onclick=`buy(${index})`)
           p Product Name: #{electronics.productName}
           p Brand: #{electronics.brand}
