@@ -3,6 +3,10 @@ extends layout
 block content
   h1= title
 
+  // Button to go to the create page
+  a.btn.btn-primary.btn-sm(href='/mobiles/create') Create New
+
+
   script.
     function buy(index) {
       alert("You purchased items " + (index+1));
@@ -13,11 +17,16 @@ block content
       - let result = results
       each electronics, index in result
         - let destination = `/mobiles/update?id=${electronics._id}`
+        - let destination1 = `/mobiles/detail?id=${electronics._id}`
+        - let destination2 = `/mobiles/delete?id=${electronics._id}`
         div.col-sm-2.m-1(onclick=`buy(${index})`)
           p Product Name: #{electronics.productName}
           p Brand: #{electronics.brand}
           p Price: #{electronics.price}
-          button.btn(class="btn-primary ml-1",onclick=`dispatch('${destination}')`) Update
+          button.btn(class="btn-primary btn-sm btn-ml-1",onclick=`dispatch('${destination}')`) Update
+          button.btn(class="btn-success btn-sm btn-ml-1",onclick=`dispatch('${destination1}')`) View details
+          button.btn(class="btn-danger btn-sm btn-ml-1",onclick=`dispatch('${destination2}')`) Delete
+          
 
   script.
     function dispatch(path) {

@@ -152,7 +152,7 @@ exports.mobile_delete_Page = async function (req, res) {
 exports.mobile_view_all_Page = async function (req, res) {
   try {
     themobile = await mobile.find();
-    res.render('mobiles', { title: 'mobile Search Results', results: themobile });
+    res.render('mobiles', { title: 'Mobile Search Results', results: themobile });
   }
   catch (err) {
     res.status(500);
